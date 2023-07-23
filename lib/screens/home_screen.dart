@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controller/counter_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -12,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CounterController());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -24,15 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              'xx',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Obx(
+              () => Text(
+                '${controller.counter}',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.increment();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
