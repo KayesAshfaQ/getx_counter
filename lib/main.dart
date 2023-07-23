@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:getx_counter/home_screen.dart';
+
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
